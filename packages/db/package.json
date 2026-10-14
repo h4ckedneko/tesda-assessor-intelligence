@@ -1,0 +1,27 @@
+{
+  "name": "@tarsier/db",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "push": "zen db push",
+    "migrate": "zen migrate dev",
+    "deploy": "zen migrate deploy",
+    "status": "zen migrate status",
+    "generate": "zen generate",
+    "check": "zen check && tsc",
+    "format": "zen format"
+  },
+  "dependencies": {
+    "@zenstackhq/orm": "^3.9.7",
+    "kysely": "^0.29.6",
+    "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.23.1",
+    "@zenstackhq/cli": "^3.9.7"
+  }
+}
