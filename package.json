@@ -3,21 +3,24 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "api:dev": "pnpm -F tarsier-api dev",
+    "api:build": "pnpm -F tarsier-api build",
+    "api:deploy": "pnpm -F tarsier-api deploy",
+    "web:dev": "pnpm -F tarsier-web dev",
+    "web:build": "pnpm -F tarsier-web build",
+    "web:deploy": "pnpm -F tarsier-web deploy",
     "db:push": "pnpm -F @tarsier/db push",
     "db:migrate": "pnpm -F @tarsier/db migrate",
     "db:deploy": "pnpm -F @tarsier/db deploy",
     "db:status": "pnpm -F @tarsier/db status",
-    "web:dev": "pnpm -F tarsier-web dev",
-    "web:build": "pnpm -F tarsier-web build",
-    "web:deploy": "pnpm -F tarsier-web deploy",
     "generate": "pnpm -r --if-present generate",
     "check": "dprint check && pnpm -r --if-present check",
     "format": "dprint fmt && pnpm -r --if-present format",
     "prepare": "lefthook install"
   },
   "devDependencies": {
-    "dprint": "^0.60.1",
-    "lefthook": "^2.1.17",
+    "dprint": "^0.63.0",
+    "lefthook": "^2.2.2",
     "typescript": "^7.0.2"
   },
   "devEngines": {

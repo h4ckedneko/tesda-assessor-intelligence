@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@zenstackhq/orm": "^3.9.7",
+    "@zenstackhq/schema": "^3.9.7",
     "kysely": "^0.29.6",
     "pg": "^8.23.1"
   },
