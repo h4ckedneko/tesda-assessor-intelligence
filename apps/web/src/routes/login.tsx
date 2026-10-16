@@ -1,14 +1,14 @@
 import { useState } from "react";
 import * as stylex from "@stylexjs/stylex";
-import { AcademicCapIcon } from "@heroicons/react/24/outline";
-import { Button } from "@astryxdesign/core/Button";
-import { Heading } from "@astryxdesign/core/Heading";
 import { HStack } from "@astryxdesign/core/HStack";
-import { Icon } from "@astryxdesign/core/Icon";
-import { Link } from "@astryxdesign/core/Link";
-import { Text } from "@astryxdesign/core/Text";
-import { TextInput } from "@astryxdesign/core/TextInput";
 import { VStack } from "@astryxdesign/core/VStack";
+import { Heading } from "@astryxdesign/core/Heading";
+import { Text } from "@astryxdesign/core/Text";
+import { Link } from "@astryxdesign/core/Link";
+import { Button } from "@astryxdesign/core/Button";
+import { TextInput } from "@astryxdesign/core/TextInput";
+import { Icon } from "@astryxdesign/core/Icon";
+import { AcademicCapIcon } from "@heroicons/react/24/outline";
 
 const styles = stylex.create({
   page: {
@@ -61,7 +61,7 @@ export function Login() {
         <VStack gap={6} width="100%" maxWidth={400}>
           <VStack gap={1}>
             <Heading level={2}>
-              Sign in
+              Welcome back
             </Heading>
             <Text type="supporting" color="secondary" size="sm">
               Please sign in your account to continue

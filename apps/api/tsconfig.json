@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig-base.json",
   "include": [
-    "./src/**/*.ts",
-    "./.cloudflare/types"
+    "./.cloudflare/types",
+    "./src/**/*.ts"
   ]
 }

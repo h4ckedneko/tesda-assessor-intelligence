@@ -12,6 +12,7 @@
   "dependencies": {
     "@tarsier/db": "workspace:*",
     "bcrypt-ts": "^9.0.2",
+    "crypto-random-string": "^6.0.0",
     "hono": "^4.13.13",
     "zod": "^4.6.7"
   },

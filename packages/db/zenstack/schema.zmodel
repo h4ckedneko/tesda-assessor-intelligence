@@ -10,12 +10,27 @@ plugin ts {
 }
 
 model User {
-    id        String   @id @default(uuid(7))
+    id        String    @id @default(uuid(7))
     name      String
-    email     String   @unique
-    password  String   @unique
-    createdAt DateTime @default(now()) @map("created_at")
-    updatedAt DateTime @updatedAt @map("updated_at")
+    email     String    @unique
+    password  String    @unique @omit
+    createdAt DateTime  @default(now()) @map("created_at")
+    updatedAt DateTime  @updatedAt @map("updated_at")
+    sessions  Session[]
 
     @@map("users")
+}
+
+model Session {
+    id           String   @id @default(uuid(7))
+    userId       String   @map("user_id")
+    token        String   @unique @omit
+    clientIp     String?  @map("client_ip")
+    clientUa     String?  @map("client_ua")
+    lastActiveAt DateTime @default(now()) @map("last_active_at")
+    createdAt    DateTime @default(now()) @map("created_at")
+    updatedAt    DateTime @updatedAt @map("updated_at")
+    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@map("sessions")
 }

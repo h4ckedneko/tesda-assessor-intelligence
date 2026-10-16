@@ -11,8 +11,8 @@
     "jsx": "react-jsx"
   },
   "include": [
+    "./.cloudflare/types",
     "./src/**/*.ts",
-    "./src/**/*.tsx",
-    "./.cloudflare/types"
+    "./src/**/*.tsx"
   ]
 }
