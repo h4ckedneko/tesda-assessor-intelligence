@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
+import { useMutation } from "@tanstack/react-query";
 import * as stylex from "@stylexjs/stylex";
+import { isDefinedError, type InferClientError } from "@orpc/client";
 import { HStack } from "@astryxdesign/core/HStack";
 import { VStack } from "@astryxdesign/core/VStack";
+import { Banner } from "@astryxdesign/core/Banner";
 import { Heading } from "@astryxdesign/core/Heading";
 import { Text } from "@astryxdesign/core/Text";
 import { Link } from "@astryxdesign/core/Link";
@@ -9,6 +12,7 @@ import { Button } from "@astryxdesign/core/Button";
 import { TextInput } from "@astryxdesign/core/TextInput";
 import { Icon } from "@astryxdesign/core/Icon";
 import { AcademicCapIcon } from "@heroicons/react/24/outline";
+import { orpc } from "../lib/orpc";
 
 const styles = stylex.create({
   page: {
@@ -49,6 +53,19 @@ export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const loginMutation = useMutation<
+    Awaited<ReturnType<typeof orpc.auth.login>>,
+    InferClientError<typeof orpc.auth.login>,
+    { email: string; password: string }
+  >({
+    mutationFn: (input) => orpc.auth.login(input),
+  });
+
+  const handleSignIn = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    loginMutation.mutate({ email, password });
+  };
+
   return (
     <div {...stylex.props(styles.page)}>
       <div {...stylex.props(styles.brand)}>
@@ -67,15 +84,27 @@ export function Login() {
               Please sign in your account to continue
             </Text>
           </VStack>
-          <form onSubmit={(event) => event.preventDefault()}>
+          <form onSubmit={handleSignIn}>
             <VStack gap={6}>
+              {loginMutation.isError && (
+                <Banner
+                  status="error"
+                  container="card"
+                  title={isDefinedError(loginMutation.error)
+                    ? loginMutation.error.message
+                    : "Something went wrong. Please try again."}
+                />
+              )}
               <VStack gap={4}>
                 <TextInput
                   label="Email"
                   placeholder="employee@tesda.gov.ph"
                   type="email"
                   value={email}
-                  onChange={setEmail}
+                  onChange={(value) => {
+                    setEmail(value);
+                    loginMutation.reset();
+                  }}
                   size="lg"
                   htmlName="email"
                   autoComplete="email"
@@ -85,7 +114,10 @@ export function Login() {
                   placeholder="••••••••••••"
                   type="password"
                   value={password}
-                  onChange={setPassword}
+                  onChange={(value) => {
+                    setPassword(value);
+                    loginMutation.reset();
+                  }}
                   size="lg"
                   htmlName="password"
                   autoComplete="current-password"
@@ -102,6 +134,7 @@ export function Login() {
                 size="lg"
                 width="100%"
                 type="submit"
+                isLoading={loginMutation.isPending}
               />
             </VStack>
           </form>

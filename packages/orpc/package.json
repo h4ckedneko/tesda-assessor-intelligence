@@ -1,0 +1,16 @@
+{
+  "name": "@tarsier/orpc",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "check": "tsc"
+  },
+  "dependencies": {
+    "@orpc/contract": "2.0.0-beta.43",
+    "zod": "^4.6.7"
+  }
+}
